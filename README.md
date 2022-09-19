@@ -1,4 +1,4 @@
-# TAURA V3S SOFT ACTOR CRITIC
+# TAURA VSS SOFT ACTOR CRITIC
 
 ## What is a Soft Actor Critic?
 Is a Deep Reinforcement Learning composed by two main neural networks. One of those is
