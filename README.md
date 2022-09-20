@@ -6,7 +6,8 @@ the agent, which will learn to chose on actions given a certain state, consideri
 that will result from that action, and the possible states that can occur giving this new state. The other DNN
 is the critic, which will specialize in judging the agent on its actions (calculating the reward function), given
 the probability of the state that will be caused by tha t action, and the possible states that will come after.
-There will also be a third network, used for controlling given a state, which actions are possible (valuable).
+There will also be a third network, used for controlling given a state, which actions are possible (valuable). The
+3 networks together will work on determining what is the best action in each state.
 
 ## What do we want?
 Get robots to learn with stability in a continuous space environment
