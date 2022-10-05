@@ -15,6 +15,7 @@ class Agent():
         self.batch_size = batch_size
         self.n_actions = n_actions
 
+        # inicializando as redes
         self.actor = ActorNetwork(alpha, input_dims, n_actions=n_actions,
                     name='actor', max_action=env.action_space.high)
         self.critic_1 = CriticNetwork(beta, input_dims, n_actions=n_actions,
@@ -28,15 +29,18 @@ class Agent():
         self.update_network_parameters(tau=1)
 
     def choose_action(self, observation):
+        # funcao de acao
         state = T.Tensor([observation]).to(self.actor.device)
         actions, _ = self.actor.sample_normal(state, reparameterize=False)
 
         return actions.cpu().detach().numpy()[0]
 
     def remember(self, state, action, reward, new_state, done):
+        # guardar acoes e consequencias no buffer de memoria
         self.memory.store_transition(state, action, reward, new_state, done)
 
     def update_network_parameters(self, tau=None):
+        # atualizar os valores da rede
         if tau is None:
             tau = self.tau
 
@@ -53,6 +57,7 @@ class Agent():
         self.target_value.load_state_dict(value_state_dict)
 
     def save_models(self):
+        # salvar os checkpoints da rede
         print('.... saving models ....')
         self.actor.save_checkpoint()
         self.value.save_checkpoint()
@@ -61,6 +66,7 @@ class Agent():
         self.critic_2.save_checkpoint()
 
     def load_models(self):
+        # carregar modelos pretreinados
         print('.... loading models ....')
         self.actor.load_checkpoint()
         self.value.load_checkpoint()
@@ -69,6 +75,7 @@ class Agent():
         self.critic_2.load_checkpoint()
 
     def learn(self):
+        # funcao de treinamento da rede
         if self.memory.mem_cntr < self.batch_size:
             return
 
