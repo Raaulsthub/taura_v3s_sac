@@ -37,6 +37,7 @@ if __name__ == '__main__':
             if not load_checkpoint:
                 agent.learn()
             observation = observation_
+            env.render()
         score_history.append(score)
         avg_score = np.mean(score_history[-100:])
 

@@ -14,6 +14,6 @@ for i in range(1):
     while not done:
         # Step using random actions
         action = env.action_space.sample()
-        next_state, reward, done, truncated, info = env.step(action)
+        next_state, reward, done, info = env.step(action)
         env.render()
     print(reward)
