@@ -1,19 +1,19 @@
-import pybullet_envs
 import gym
+import rsoccer_gym
 import numpy as np
 from sac_torch import Agent
 from utils import plot_learning_curve
 from gym import wrappers
 
 if __name__ == '__main__':
-    env = gym.make('InvertedPendulumBulletEnv-v0')
+    env = gym.make('VSS-v0')
     agent = Agent(input_dims=env.observation_space.shape, env=env,
             n_actions=env.action_space.shape[0])
     n_games = 250
     # uncomment this line and do a mkdir tmp && mkdir video if you want to
     # record video of the agent playing the game.
     #env = wrappers.Monitor(env, 'tmp/video', video_callable=lambda episode_id: True, force=True)
-    filename = 'inverted_pendulum.png'
+    filename = 'vss.png'
 
     figure_file = 'plots/' + filename
 
